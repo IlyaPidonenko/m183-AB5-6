@@ -1,0 +1,4 @@
+node_modules
+minitwitter.db
+.env
+.log.js
