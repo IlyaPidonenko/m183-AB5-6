@@ -2,14 +2,8 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const { initializeDatabase, queryDB } = require("./database");
 const jwt = require("jsonwebtoken");
-const AesEncryption = require('aes-encryption')
 
-const aes = new AesEncryption()
-aes.setSecretKey(AES_SECRET2)
 
-const encrypted = aes.encrypt('plain-text')
-
-const decrypted = aes.decrypt(encrypted)
 
 let db;
  

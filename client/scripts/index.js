@@ -1,3 +1,8 @@
+const AesEncryption = require('aes-encryption')
+
+const aes = new AesEncryption()
+aes.setSecretKey(AES_SECRET2)
+
 document.addEventListener("DOMContentLoaded", () => {
   const feed = document.getElementById("feed");
   const usernameInput = document.getElementById("username");
@@ -97,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   postButton.addEventListener("click", async () => {
     const title = titleInput.value;
     const content = postContent.value;
+    const encrypted = aes.encrypt('plain-text')
     const response = await fetch("/api/post/create", {
       method: "POST",
       headers: {
@@ -105,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({ title, content }),
     });
     req.log.info("Post wurde in die DB hinzugefügt");
+    const decrypted = aes.decrypt(encrypted)
     getPosts();
   });
   });
